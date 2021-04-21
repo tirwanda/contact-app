@@ -1,0 +1,73 @@
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+	<div class="card-header py-3">
+		<button
+			type="button"
+			class="btn btn-primary"
+			data-toggle="modal"
+			data-target="#add-Modal"
+		>
+			Add Contact
+		</button>
+	</div>
+	<div class="card-body">
+		<div class="table-responsive">
+			<table
+				class="table table-bordered"
+				id="dataTable"
+				width="100%"
+				cellspacing="0"
+			>
+				<thead>
+					<tr>
+						<th>No</th>
+						<th>Name</th>
+						<th>Phone Number(+62)</th>
+						<th>Address</th>
+						<th>Picture</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% for(let i = 0; i < contact.length; i++) { %>
+					<tr>
+						<td><%= i + 1 %></td>
+						<td><%= contact[i].contactName %></td>
+						<td><%= contact[i].phoneNumber %></td>
+						<td><%= contact[i].address %></td>
+						<td>
+							<img
+								src="http://localhost:3000/<%= contact[i].picture %>"
+								width="70px"
+							/>
+						</td>
+						<td>
+							<form
+								action="/<%= contact[i]._id %>?_method=DELETE"
+								method="POST"
+							>
+								<a
+									href="javascript:void();"
+									type="button"
+									class="btn btn-warning btn-circle btn-sm button-update"
+									data-id="<%= contact[i]._id %>"
+									data-address="<%= contact[i].address %>"
+									data-contactname="<%= contact[i].contactName %>"
+									data-phonenumber="<%= contact[i].phoneNumber %>"
+									><i class="fas fa-edit"></i
+								></a>
+								<button
+									type="submit"
+									class="btn btn-danger btn-sm"
+								>
+									<i class="fas fa-trash"></i>
+								</button>
+							</form>
+						</td>
+					</tr>
+					<% } %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
